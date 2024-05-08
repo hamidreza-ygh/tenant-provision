@@ -1,0 +1,25 @@
+applications:
+  - name: ${app_name}
+    project: default
+    source:
+      chart: ${chart_name}
+      repoURL: ${repo_url}
+      targetRevision: 0.2.0
+      helm:
+        values: |
+          image:
+            repository: "ghcr.io/hamidreza-ygh/tenant-software/todo-app"
+            tag: latest
+
+          envDbHost: ${db_host}
+          envDbPort: 21699
+          envDbUser: ${db_user}
+          envDbPass: ${db_pass}
+          envDbName: "defaultdb"
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: ${app_namespace}
+    syncPolicy:
+      automated: {}
+      syncOptions:
+        - CreateNamespace=true

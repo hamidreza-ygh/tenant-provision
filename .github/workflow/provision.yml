@@ -1,0 +1,44 @@
+name: Provision Tenant Software
+on:
+  workflow_dispatch:
+    inputs:
+      exo-secret-key:
+        description: Exoscale Secret Key
+        required: true
+        type: string
+      exo-api-key:
+        description: Exoscale API Key
+        required: true
+        type: string
+      db-password:
+        description: Database Password
+        required: true
+        type: string
+      db-user:
+        description: Database User
+        required: true
+        type: string
+      app-name:
+        description: Tenant Application Name
+        required: true
+        type: string
+      app-namespace:
+        description: Tenant Application Namespace
+        required: true
+        type: string
+jobs:
+  provision-tenant-software:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_wrapper: false
+      - name: OpenTofu Apply
+        id:   apply
+        run: |
+          tofu init
+          tofu apply -var="exo_secret_key=${{ github.event.inputs.exo-secret-key }}" -var="exo_api_key=${{ github.event.inputs.exo-api-key }}" -var="db_password=${{ github.event.inputs.db-password }}" -var="db_user=${{ github.event.inputs.db-user }}" -var="app_name=${{ github.event.inputs.app-name }}" -var="app_namespace=${{ github.event.inputs.app-namespace }}" -auto-approve
