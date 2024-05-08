@@ -8,8 +8,8 @@
 locals {
   repo_url = "https://hamidreza-ygh.github.io/tenant-software/"
   chart_name = "tenant-todo-app"
-  app_name = "tenant-1-todo-app"
-  app_namespace = "tenant-1"
+  app_name = var.app_name
+  app_namespace = var.app_namespace
 }
 
 
