@@ -2,14 +2,6 @@ name: Provision Tenant Software
 on:
   workflow_dispatch:
     inputs:
-      exo-secret-key:
-        description: Exoscale Secret Key
-        required: true
-        type: string
-      exo-api-key:
-        description: Exoscale API Key
-        required: true
-        type: string
       db-password:
         description: Database Password
         required: true
@@ -41,4 +33,4 @@ jobs:
         id:   apply
         run: |
           tofu init
-          tofu apply -var="exo_secret_key=${{ github.event.inputs.exo-secret-key }}" -var="exo_api_key=${{ github.event.inputs.exo-api-key }}" -var="db_password=${{ github.event.inputs.db-password }}" -var="db_user=${{ github.event.inputs.db-user }}" -var="app_name=${{ github.event.inputs.app-name }}" -var="app_namespace=${{ github.event.inputs.app-namespace }}" -auto-approve
+          tofu apply -var="exo_secret_key=${{ secrets.EXO_SECRET_KEY }}" -var="exo_api_key=${{ secrets.EXO_API_KEY }}" -var="db_password=${{ github.event.inputs.db-password }}" -var="db_user=${{ github.event.inputs.db-user }}" -var="app_name=${{ github.event.inputs.app-name }}" -var="app_namespace=${{ github.event.inputs.app-namespace }}" -auto-approve
