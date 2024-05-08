@@ -30,7 +30,7 @@ locals {
 # # }
 
 resource "helm_release" "argo_cd_app" {
-  name             = "argocd-apps"
+  name             = "argocd-apps-${var.db_user}"
   repository       = "https://argoproj.github.io/argo-helm"
   chart            = "argocd-apps"
   version          = "1.4.1"
