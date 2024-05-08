@@ -10,7 +10,7 @@ locals {
 
 resource "exoscale_database" "my_database" {
   zone = local.my_zone
-  name = "tenant-1"
+  name = var.db_user
 
   type = "mysql"
   plan = "hobbyist-2"
