@@ -16,6 +16,11 @@ applications:
           envDbUser: ${db_user}
           envDbPass: ${db_pass}
           envDbName: "defaultdb"
+
+          ingress:
+            name: ${app_name}
+            host:
+              path: "/${db_user}"
     destination:
       server: https://kubernetes.default.svc
       namespace: ${app_namespace}
