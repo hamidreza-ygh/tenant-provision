@@ -4,7 +4,7 @@ applications:
     source:
       chart: ${chart_name}
       repoURL: ${repo_url}
-      targetRevision: 0.14.0
+      targetRevision: 0.15.0
       helm:
         values: |
           image:
@@ -18,9 +18,9 @@ applications:
           envDbName: "defaultdb"
 
           ingress:
+            middleware:
+              name: "${app_name}-auth"
             name: ${app_name}
-            host:
-              path: "/${db_user}"
     destination:
       server: https://kubernetes.default.svc
       namespace: ${app_namespace}
