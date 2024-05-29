@@ -30,3 +30,23 @@ variable "app_namespace" {
   description = "The namespace of tenant application" 
   type = string
 }
+
+variable "cloudflare_email" {
+  description = "The email address for the Cloudflare provider"
+  type = string
+  default = "hamidreza.ygh@gmail.com"
+}
+
+variable "cloudflare_api_key" {
+  description = "The API key for the Cloudflare provider"
+  type = string
+  default = "8e1ee7c9362b612a25519a10cf893877594e5"
+  sensitive = true 
+}
+
+variable "cloudflare_domain_zone_id" {
+  description = "The Zone ID for the Cloudflare provider"
+  type = string
+  default = "bc0206a8813f315d41f3f2774fc0fad4"
+  
+}
