@@ -19,8 +19,8 @@ applications:
 
           ingress:
             middleware:
-              name: "${app_name}-auth"
-            name: ${app_name}
+              name: "${app_namespace}-auth"
+            name: ${app_namespace}
     destination:
       server: https://kubernetes.default.svc
       namespace: ${app_namespace}
