@@ -4,7 +4,7 @@ applications:
     source:
       chart: ${chart_name}
       repoURL: ${repo_url}
-      targetRevision: 0.17.0
+      targetRevision: 1.0.0
       helm:
         values: |
           image:
